@@ -5,3 +5,6 @@ Esta es una prueba tecnica de ingreso desarrollada para "El Tiempo casa editoria
 
 ### Prueba de funcionamiento.
 Para mostrar la aplicacion de POO en PHP se agrego un boton en la pantalla inicial que genera un registro de prueba.
+
+### Comprobaciones y Excepciones
+Se agregaron algunas comprobaciones en el formulario para validar que los campos no sean nulos ademas de agregar una excepcion como implementacion de una comprobacion en el archivo de creacion.php
