@@ -94,8 +94,8 @@
     <h1> CATALOGO DE PRODUCTOS </h1>
 
     <div class="groupButtons">
-        <button class="Crear">Crear Producto</button>
         <button class="DB">Crear base de datos</button>
+        <button class="Crear">Crear Producto</button>
         <button class="Probar">Probar Creacion Producto</button>
     </div>
 
