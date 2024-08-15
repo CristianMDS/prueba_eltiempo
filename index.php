@@ -94,15 +94,18 @@
     <h1> CATALOGO DE PRODUCTOS </h1>
 
     <div class="groupButtons">
-        <button class="DB">Crear base de datos</button>
         <button class="Crear">Crear Producto</button>
+        <button class="DB">Crear base de datos</button>
         <button class="Probar">Probar Creacion Producto</button>
     </div>
 
     <div class="catalogo">
         <?php
         
-            $pdo = new PDO('mysql: host=127.0.0.1; dbname=catalogo', 'root', '');
+            require './controlador/config.php';
+
+            $pdo = new config();
+            $pdo = $pdo->conexion();
 
             $stmt = $pdo->prepare('SELECT * FROM productos');
             $stmt->execute();

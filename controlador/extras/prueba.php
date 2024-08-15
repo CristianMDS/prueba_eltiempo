@@ -8,6 +8,6 @@ $descripcion = "Es un producto de 1 dolar con 99 centavos";
 $estado = "PRUEBA";
 
 $producto = new CrearProducto($nombre, $descripcion, $precio, $estado);
-$producto->guardar();
+$producto->guardar_prueba();
 
 echo "<script>window.location.href = '../../index.php';</script>";

@@ -9,9 +9,11 @@ class EliminarProducto {
     }
 
     public function eliminar() {
-        try {
-            $pdo = new PDO('mysql: host=127.0.0.1; dbname=catalogo', 'root', '');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {            
+            require '../controlador/config.php';
+
+            $pdo = new config();
+            $pdo = $pdo->conexion();
 
             $stmt = $pdo->prepare('DELETE FROM productos WHERE id = :id');
             $stmt->execute([

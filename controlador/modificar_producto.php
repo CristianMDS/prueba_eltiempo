@@ -2,9 +2,6 @@
 
 require("../modelo/modificar.php");
 
-$pdo = new PDO('mysql: host=127.0.0.1; dbname = catalogo', 'root', '');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
     $id = trim($_POST["id"]);
     $nombre = trim($_POST["nombre"]);

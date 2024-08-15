@@ -7,7 +7,7 @@ $('.Probar').click((e) => {
 });
 
 $('.DB').click(function (e) { 
-    window.location.href = 'controlador/extras/bd.php';
+    window.location.href = 'controlador/extras/create_bd.php';
     
 });
 

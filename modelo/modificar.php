@@ -18,8 +18,10 @@ class ModificarProducto {
 
     public function modificar(){
         try {
-            $pdo = new PDO('mysql: host=127.0.0.1; dbname=catalogo', 'root', '');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            require '../controlador/config.php';
+
+            $pdo = new config();
+            $pdo = $pdo->conexion();
 
             $stmt = $pdo->prepare('UPDATE productos 
                                     SET nombre_producto = :nombre, precio = :precio, 

@@ -66,7 +66,10 @@
         
         $id = urldecode($_GET['id']);;
 
-        $pdo = new PDO('mysql: host=127.0.0.1; dbname=catalogo', 'root', '');
+        require '../controlador/config.php';
+
+        $pdo = new config();
+        $pdo = $pdo->conexion();
 
         $stmt = $pdo->prepare('SELECT nombre_producto, precio, descripcion FROM productos WHERE id = :id');
         $stmt->execute([
