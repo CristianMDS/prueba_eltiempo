@@ -19,15 +19,7 @@ class EliminarProducto {
             $stmt->execute([
                 ':id' => $this->id
             ]);
-            echo "<script>
-
-                let i = confirm('Eliminado correctamente');
-                if (i){
-                    window.opener.location.reload();
-                    window.close();
-                }
-            
-            </script>";
+            return "yes";
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -46,7 +38,7 @@ class EliminarProducto {
             ]);
 
             header("HTTP/1.1 200 OK");
-            echo json_encode(["Borrado" => "el producto con codigo: ".$this.id." fue eliminado "]);
+            echo json_encode(["Borrado" => "el producto fue eliminado "]);
             
         } catch (PDOException $e) {
 

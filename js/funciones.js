@@ -16,6 +16,20 @@ function editar(id){
 }
 
 function eliminar(id){
-    window.open('controlador/eliminar_producto.php?id='+id, 'edicion', 'width=600,height=400');
+    $.post("controlador/eliminar_producto.php", { "id": id },
+        function (d) {
+            if(d.trim() === 'yes'){
+                Swal.fire({
+                    title: "¡Eliminado!",
+                    icon: "success",
+                    text: "El producto fue eliminado exitosamente"
+                }).then((e) => {
+                    if(e.isConfirmed)
+                        window.location.reload();
+                });
+            }
+        },
+        "HTML"
+    );
 }
 

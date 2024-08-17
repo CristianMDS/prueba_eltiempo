@@ -5,10 +5,10 @@ require("../modelo/modificar.php");
 
 
 if($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["btn-modificar"])){
-    $id = trim($_POST["id"]);
-    $nombre = trim($_POST["nombre"]);
-    $precio = trim($_POST["precio"]);
-    $descripcion = trim($_POST["descripcion"]);
+    $id = filter_var(trim($_POST["id"]), FILTER_VALIDATE_INT);
+    $nombre = filter_var(trim($_POST["nombre"]), FILTER_SANITIZE_STRING);
+    $precio = filter_var(trim($_POST["precio"]), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $descripcion = filter_var(trim($_POST["descripcion"]), FILTER_SANITIZE_STRING);
 
     if($nombre == '' || $descripcion == '' || $precio == ''){
         echo "<script>
@@ -27,10 +27,10 @@ if($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["btn-modificar"])){
 if($_SERVER["REQUEST_METHOD"] == 'PUT'){
     header('Content-Type: application/json');
 
-    $id = trim($_GET["id"]);
-    $nombre = trim($_GET["nombre"]);
-    $precio = trim($_GET["precio"]);
-    $descripcion = trim($_GET["descripcion"]);
+    $id = filter_var(trim($_POST["id"]), FILTER_VALIDATE_INT);
+    $nombre = filter_var(trim($_POST["nombre"]), FILTER_SANITIZE_STRING);
+    $precio = filter_var(trim($_POST["precio"]), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $descripcion = filter_var(trim($_POST["descripcion"]), FILTER_SANITIZE_STRING);
 
     $modificar = new ModificarProducto($nombre, $precio, $descripcion, $id, 'MODIFICADO');
     $modificar->modificar_postman();

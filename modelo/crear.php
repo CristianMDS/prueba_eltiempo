@@ -1,8 +1,5 @@
 <?php
 
-    
-    
-
     class CrearProducto {
 
         private $nombre_producto;

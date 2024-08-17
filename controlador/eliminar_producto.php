@@ -2,14 +2,19 @@
 
 require('../modelo/eliminar.php');
 
-if($_SERVER["REQUEST_METHOD"] != 'DELETE' && isset($_GET['id'])){
-    $id = trim($_GET["id"]);
+if($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST['id'])){
+    
+    $id = filter_var(trim($_POST["id"]), FILTER_VALIDATE_INT);
     $obj = new EliminarProducto($id);
-    $obj->eliminar();
-} else if($_SERVER["REQUEST_METHOD"] == 'DELETE' && isset($_GET['id'])) {
+    echo $obj->eliminar();
+
+} 
+
+
+if($_SERVER["REQUEST_METHOD"] == 'DELETE' && isset($_GET['id'])) {
     header('Content-Type: application/json');
     
-    $id = trim($_GET["id"]);
+    $id = filter_var(trim($_GET["id"]), FILTER_VALIDATE_INT);
 
     $obj = new EliminarProducto($id);
     $obj->eliminar_postman();
