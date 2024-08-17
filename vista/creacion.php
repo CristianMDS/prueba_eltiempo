@@ -63,7 +63,7 @@
     <div class="catalogo">
 
             <br><br>
-            <form action="../controlador/crear_producto.php" method="post">
+            <form action="../controlador/crear_producto.php" method="POST">
                 <label>
                     Nombre del producto: <br>
                     <input type="text" placeholder="Ingrese un nombre..." name="nombre" id="nombre" require="require"/>
@@ -75,11 +75,11 @@
                 </label>
                 <br>
                 <label>
-                    Valor: <br>
-                    <input type="number" placeholder="Ingrese un precio..." name="valor" id="valor" step="0.01" require="require"/>
+                    Precio: <br>
+                    <input type="number" placeholder="Ingrese un precio..." name="precio" id="precio" step="0.01" require="require"/>
                 </label> <br><br>
 
-                <input type="submit" value="Crear">
+                <input type="submit" value="Crear" name="btn-crear">
             </form>
     </div>
 </body>

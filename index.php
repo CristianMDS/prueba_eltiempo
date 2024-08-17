@@ -95,7 +95,6 @@
 
     <div class="groupButtons">
         <button class="Crear">Crear Producto</button>
-        <button class="DB">Crear base de datos</button>
         <button class="Probar">Probar Creacion Producto</button>
     </div>
 
@@ -115,6 +114,7 @@
                 // <img src='producto1.jpg' alt='Producto 1'>
                 echo "<div class='producto'>
                         <h2 class='nombre'>" . $row['nombre_producto'] . "</h2>
+                        <h3 class='subtitulo'> Codigo: ". $row['id'] ."</h3>
                         <p>" . $row['descripcion'] . "</p>
                         <p class='precio'>" . $row['precio'] . "</p>
                         <button class='Editar' id='" . $row['id'] . "' onclick='editar(this.id)'>Editar</button>
@@ -122,7 +122,7 @@
                     </div>";
             }
         
-        
+            
         
         ?>
     </div>

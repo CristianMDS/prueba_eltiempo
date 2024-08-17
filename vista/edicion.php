@@ -64,9 +64,10 @@
 
         <?php
         
-        $id = urldecode($_GET['id']);;
-
+        
         require '../controlador/config.php';
+
+        $id = urldecode($_GET['id']);
 
         $pdo = new config();
         $pdo = $pdo->conexion();
@@ -87,7 +88,7 @@
         ?>
 
             <br><br>
-            <form action="../controlador/modificar_producto.php" method="post">
+            <form action="../controlador/modificar_producto.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <label>
                     Nombre del producto: <br>
@@ -104,7 +105,7 @@
                     <input type="number"  require="require" placeholder="Ingrese un precio..." name="precio" id="precio" step="0.01" value="<?php echo $precio; ?>" />
                 </label> <br><br>
 
-                <input type="submit" value="Modificar">
+                <input type="submit" value="Modificar" name="btn-modificar">
             </form>
     </div>
 </body>
