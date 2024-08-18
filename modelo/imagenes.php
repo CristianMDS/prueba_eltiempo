@@ -86,11 +86,29 @@ class ActualizarImagen {
 
             $pdo = $this->pdo;
 
-            $stmt = $pdo->prepare('UPDATE imagenes SET nombre_img = :nombre, ruta = :ruta WHERE id_producto = :id_producto');
-                $stmt->bindValue(":nombre", $this->nombre);
-                $stmt->bindValue(":ruta", $this->ruta);
+            $stmt = $pdo->prepare('SELECT COUNT(*) AS cantidad FROM imagenes WHERE id_producto = :id_producto');
                 $stmt->bindValue(":id_producto", $this->id);
             $stmt->execute();
+
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($res as $row) {
+                $cantidad = $row['cantidad'];
+            }
+
+            if($cantidad >= 1){
+                $stmt = $pdo->prepare('UPDATE imagenes SET nombre_img = :nombre, ruta = :ruta WHERE id_producto = :id_producto');
+                    $stmt->bindValue(":nombre", $this->nombre);
+                    $stmt->bindValue(":ruta", $this->ruta);
+                    $stmt->bindValue(":id_producto", $this->id);
+                $stmt->execute();
+            } else if($cantidad <= 0){
+                $stmt = $pdo->prepare('INSERT INTO imagenes (nombre_img, ruta, id_producto) VALUES (:nombre, :ruta, :id_producto)');
+                    $stmt->bindValue(":nombre", $this->nombre);
+                    $stmt->bindValue(":ruta", $this->ruta);
+                    $stmt->bindValue(":id_producto", $this->id);
+                $stmt->execute();
+            }
 
             $nombre = $this->nombre;
             $tmp = $this->nombre_tmp;

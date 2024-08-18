@@ -19,16 +19,19 @@ if($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["btn-modificar"])){
         return; 
     }
 
+
     $nombre_img = $_FILES['imagen']['name'];
     $nombre_tmp = $_FILES['imagen']['tmp_name'];
 
     $modificar = new ModificarProducto($nombre, $precio, $descripcion, $id, 'MODIFICADO');
-    $modificar->datos_Imagen($nombre_img, $nombre_tmp);
+    
+    if(empty($_FILES['imagen']['name'] == false)){
+        $modificar->datos_Imagen($nombre_img, $nombre_tmp);
+    }
+
     $modificar->modificar();
 
-}
-
-if($_SERVER["REQUEST_METHOD"] == 'PUT'){
+} else if($_SERVER["REQUEST_METHOD"] == 'PUT'){
     header('Content-Type: application/json');
 
     $id = filter_var(trim($_GET["id"]), FILTER_VALIDATE_INT);
@@ -36,14 +39,15 @@ if($_SERVER["REQUEST_METHOD"] == 'PUT'){
     $precio = filter_var(trim($_GET["precio"]), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $descripcion = filter_var(trim($_GET["descripcion"]), FILTER_SANITIZE_STRING);
 
-    parse_str(file_get_contents("php://input"), $_PUT);
 
-    $nombre_img = $_FILES['imagen']['name'];
-    $nombre_tmp = $_FILES['imagen']['tmp_name'];
-    
-    echo var_dump($nombre_img);
+    // echo json_encode([
+    //     "id" => $id,
+    //     "nombre" => $nombre,
+    //     "precio" => $precio,
+    //     "descripcion" => $descripcion
+    // ]);
 
-    return;
+    // return;
 
     $modificar = new ModificarProducto($nombre, $precio, $descripcion, $id, 'MODIFICADO');
     $modificar->modificar_postman();
