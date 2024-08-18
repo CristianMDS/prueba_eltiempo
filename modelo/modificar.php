@@ -1,11 +1,13 @@
 <?php
 
 require '../controlador/config.php';
+require '../modelo/imagenes.php';
 
 class ModificarProducto {
 
 
-    private $nombre;
+    private $nombre_archivo;
+    private $nombre_tmp;
     private $precio;
     private $descripcion;
     private $id;
@@ -17,6 +19,11 @@ class ModificarProducto {
         $this->descripcion = $descripcion;
         $this->id = $id;
         $this->estado = $estado;
+    }
+    
+    public function datos_Imagen($nombre_archivo, $nombre_tmp){
+        $this->nombre_archivo = $nombre_archivo;
+        $this->nombre_tmp = $nombre_tmp;
     }
 
     public function modificar(){
@@ -36,6 +43,26 @@ class ModificarProducto {
                 ":id" => $this->id,
                 ":estado" => $this->estado
             ]);
+
+            $stmt = $pdo->prepare('SELECT MAX(id) AS id FROM productos');
+                $stmt->execute();
+
+                $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach ($res as $row) {
+                    $id = trim($row["id"]);
+                }
+
+                $ruta = "../img/";
+                $nombre_archivo = $this->nombre_archivo;
+                $nombre_tmp = $this->nombre_tmp;
+
+                if(!is_dir($ruta)){
+                    mkdir($ruta);
+                }
+
+                $new_img = new ActualizarImagen($nombre_archivo, $nombre_tmp, $ruta, $id, $pdo);
+                $new_img->update_Imagen();
 
             echo "<script> 
                 let i = confirm('modificado exitosamente'); 
@@ -65,6 +92,26 @@ class ModificarProducto {
                 ":id" => $this->id,
                 ":estado" => $this->estado
             ]);
+
+            $stmt = $pdo->prepare('SELECT MAX(id) AS id FROM productos');
+                $stmt->execute();
+
+                $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                foreach ($res as $row) {
+                    $id = trim($row["id"]);
+                }
+
+                $ruta = "../img/";
+                $nombre_archivo = $this->nombre_archivo;
+                $nombre_tmp = $this->nombre_tmp;
+
+                if(!is_dir($ruta)){
+                    mkdir($ruta);
+                }
+
+                $new_img = new ActualizarImagen($nombre_archivo, $nombre_tmp, $ruta, $id, $pdo);
+                $new_img->update_Imagen();
 
             header("HTTP/1.1 200 OK");
 

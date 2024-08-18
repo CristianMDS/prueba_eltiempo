@@ -88,7 +88,7 @@
         ?>
 
             <br><br>
-            <form action="../controlador/modificar_producto.php" method="POST">
+            <form action="../controlador/modificar_producto.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <label>
                     Nombre del producto: <br>
@@ -103,7 +103,13 @@
                 <label>
                     Valor: <br>
                     <input type="number"  require="require" placeholder="Ingrese un precio..." name="precio" id="precio" step="0.01" value="<?php echo $precio; ?>" />
-                </label> <br><br>
+                </label>
+                 <br><br>
+                <label> 
+                    <input type="file" name="imagen" id="imagen" />
+                </label>
+                <br><br>
+                
 
                 <input type="submit" value="Modificar" name="btn-modificar">
             </form>

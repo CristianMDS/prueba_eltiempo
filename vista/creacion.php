@@ -63,7 +63,7 @@
     <div class="catalogo">
 
             <br><br>
-            <form action="../controlador/crear_producto.php" method="POST">
+            <form action="../controlador/crear_producto.php" method="POST" enctype="multipart/form-data">
                 <label>
                     Nombre del producto: <br>
                     <input type="text" placeholder="Ingrese un nombre..." name="nombre" id="nombre" require="require"/>
@@ -77,7 +77,13 @@
                 <label>
                     Precio: <br>
                     <input type="number" placeholder="Ingrese un precio..." name="precio" id="precio" step="0.01" require="require"/>
-                </label> <br><br>
+                </label>
+                <br><br>
+                <label> 
+                    <input type="file" name="imagen" id="imagen" />
+                </label>
+                <br><br>
+
 
                 <input type="submit" value="Crear" name="btn-crear">
             </form>

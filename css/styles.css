@@ -1,0 +1,77 @@
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+body h1 {
+    display: flex;
+    justify-content: center;
+
+}
+
+.groupButtons {
+    display:flex;
+    justify-content:center;
+}
+
+.Crear {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    margin-right: 16px;
+}
+
+.DB {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    margin-right: 16px;
+}
+
+.Probar {
+    width: 190px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.producto {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.producto img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.producto h2 {
+    font-size: 1.5em;
+    margin: 0 0 10px;
+}
+
+.producto p {
+    margin: 0 0 10px;
+}
+
+.producto .precio {
+    font-size: 1.2em;
+    color: #e74c3c;
+}

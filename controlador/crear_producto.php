@@ -19,10 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["btn-crear"])) {
         return; 
     }
 
+    $nombre_img = $_FILES['imagen']['name'];
+    $nombre_tmp = $_FILES['imagen']['tmp_name'];
+
     $producto = new CrearProducto($nombre_producto, $descripcion, $precio, $estado);
+    $producto->datos_Imagen($nombre_img, $nombre_tmp);
     $producto->guardar();
 
-} elseif($_SERVER["REQUEST_METHOD"] == 'POST') {
+} else if($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     header('Content-Type: application/json');
 
@@ -31,7 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["btn-crear"])) {
     $precio = filter_var($_POST['precio'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $estado = 'Creado';
 
+    $nombre_img = $_FILES['imagen']['name'];
+    $nombre_tmp = $_FILES['imagen']['tmp_name'];
+
     $producto = new CrearProducto($nombre_producto, $descripcion, $precio, $estado);
+    $producto->datos_Imagen($nombre_img, $nombre_tmp);
     $producto->guardar_postman();
     
 }

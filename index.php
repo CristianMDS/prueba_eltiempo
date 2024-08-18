@@ -6,89 +6,7 @@
     <title>Ejercicio CRUD</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script>
-        function recargar(){
-            window.location.reload();
-        }
-    </script> -->
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        body h1 {
-            display: flex;
-            justify-content: center;
-
-        }
-
-        .groupButtons {
-            display:flex;
-            justify-content:center;
-        }
-
-        .Crear {
-            width: 150px;
-            height: 50px;
-            font-size: 20px;
-            margin-right: 16px;
-        }
-
-        .DB {
-            width: 150px;
-            height: 50px;
-            font-size: 20px;
-            margin-right: 16px;
-        }
-
-        .Probar {
-            width: 190px;
-            height: 50px;
-            font-size: 20px;
-        }
-        
-        .catalogo {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .producto {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin: 10px;
-            padding: 20px;
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .producto img {
-            max-width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 15px;
-        }
-
-        .producto h2 {
-            font-size: 1.5em;
-            margin: 0 0 10px;
-        }
-
-        .producto p {
-            margin: 0 0 10px;
-        }
-
-        .producto .precio {
-            font-size: 1.2em;
-            color: #e74c3c;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     
@@ -103,6 +21,7 @@
         <?php
         
             require './controlador/config.php';
+            require './modelo/imagenes.php';
 
             $pdo = new config();
             $pdo = $pdo->conexion();
@@ -112,18 +31,26 @@
 
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($res as $row) {
-                // <img src='producto1.jpg' alt='Producto 1'>
+                
+                $img = new TraerImagen();
+                $imagen = $img->get_Imagen($row["id"], $pdo);
+
+                if ($imagen != 'vacio'){
+                    $html = "<img src='./img/".$imagen."' alt='".$imagen."'>";
+                } else if($imagen == 'vacio') {
+                    $html = "<p> NO CUENTA CON IMAGEN </p>";
+                }
+
                 echo "<div class='producto'>
+                        ".$html."
                         <h2 class='nombre'>" . $row['nombre_producto'] . "</h2>
                         <h3 class='subtitulo'> Codigo: ". $row['id'] ."</h3>
                         <p>" . $row['descripcion'] . "</p>
-                        <p class='precio'>" . $row['precio'] . "</p>
+                        <p class='precio'> <b>$ </b>" . $row['precio'] . "</p>
                         <button class='Editar' id='" . $row['id'] . "' onclick='editar(this.id)'>Editar</button>
                         <button class='Eliminar' id='" . $row['id'] . "' onclick='eliminar(this.id)'>Eliminar</button>
                     </div>";
-            }
-        
-            
+            }            
         
         ?>
     </div>
