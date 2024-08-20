@@ -4,7 +4,7 @@ require '../controlador/config.php';
 
 class ModificarProducto {
 
-
+    private $nombre;
     private $nombre_archivo;
     private $nombre_tmp;
     private $precio;
