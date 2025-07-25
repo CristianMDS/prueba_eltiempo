@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio CRUD</title>
+
     <style>
 
         body {
@@ -62,6 +63,22 @@
     <h1>CREAR PRODUCTO</h1>
     <div class="catalogo">
 
+        <?php
+        
+            $pdo = new PDO('mysql: host=127.0.0.1; dbname=catalogo', 'root', '');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $stmt = $pdo->prepare('SELECT * FROM productos');
+
+            $stmt->execute();
+
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            echo json_encode($res);
+
+        
+        ?>
+
             <br><br>
             <form action="../controlador/crear_producto.php" method="POST" enctype="multipart/form-data">
                 <label>
@@ -84,9 +101,9 @@
                 </label>
                 <br><br>
 
-
-                <input type="submit" value="Crear" name="btn-crear">
+                <input type="button" value="Crear" name="btn-crear" id="btn-crear">
             </form>
     </div>
+    <script src="example.js" ></script>
 </body>
 </html>

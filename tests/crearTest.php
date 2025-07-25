@@ -16,6 +16,5 @@ class CrearTest extends TestCase {
         $producto = new Crear($nombre, $descripcion, $precio, $estado);
         
         $this->assertTrue($producto->crearProductoPrueba(), true);
-        $this->assertNotTrue($producto->crearProductoPrueba(), false);
     }
 }

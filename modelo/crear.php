@@ -98,10 +98,6 @@
             }
         }
 
-        public function fueCreado():string{
-            return $this->nombre_producto;
-        }
-
         public function guardar_postman(){
             require('../controlador/config.php');
             require '../modelo/imagenes.php';
